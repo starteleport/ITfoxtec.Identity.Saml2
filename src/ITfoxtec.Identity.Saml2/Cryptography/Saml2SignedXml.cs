@@ -83,6 +83,10 @@ namespace ITfoxtec.Identity.Saml2.Cryptography
 
         private void ComputeSignatureInternal()
         {
+            SigningKey = saml2Signer.Certificate.GetRSAPrivateKey();
+            ComputeSignature();
+            return;
+
             BuildDigestedReferencesInvoker();
 
             var formatter = saml2Signer.CreateFormatter();

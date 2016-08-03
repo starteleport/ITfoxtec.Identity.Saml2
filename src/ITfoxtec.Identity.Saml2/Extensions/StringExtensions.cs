@@ -1,24 +1,28 @@
 ﻿using System.IO;
 using System.Xml;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     /// <summary>
     /// Extension methods for string
     /// </summary>
-    internal static class StringExtensions
+    public static class StringExtensions
     {
         /// <summary>
         /// Converts an string to an XmlDocument.
         /// </summary>
-        internal static XmlDocument ToXmlDocument(this string xml)
+        public static XmlDocument ToXmlDocument(this string xml)
         {
             using (var stringReader = new StringReader(xml))
-            using (var xmlReader = XmlReader.Create(stringReader, new XmlReaderSettings { DtdProcessing = DtdProcessing.Prohibit, XmlResolver = null }))
+            using (
+                var xmlReader = XmlReader.Create(stringReader,
+                    new XmlReaderSettings {DtdProcessing = DtdProcessing.Prohibit, XmlResolver = null}))
             {
-                XmlDocument xmlDocument = new XmlDocument();
-                xmlDocument.XmlResolver = null;
-                xmlDocument.PreserveWhitespace = true;
+                var xmlDocument = new XmlDocument
+                {
+                    XmlResolver = null,
+                    PreserveWhitespace = true
+                };
                 xmlDocument.Load(xmlReader);
                 return xmlDocument;
             }

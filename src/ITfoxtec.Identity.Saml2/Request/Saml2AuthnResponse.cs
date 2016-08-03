@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Protocols.WSTrust;
 using System.Xml.Linq;
 using System.IO;
+using ITfoxtec.Identity.Saml2.Extensions;
 
 namespace ITfoxtec.Identity.Saml2
 {

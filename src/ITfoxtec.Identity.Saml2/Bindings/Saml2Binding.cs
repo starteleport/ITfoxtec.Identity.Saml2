@@ -47,7 +47,7 @@ namespace ITfoxtec.Identity.Saml2
 
             if (saml2RequestResponse.Config.SigningCertificate != null)
             {
-                if (saml2RequestResponse.Config.SigningCertificate.PrivateKey == null)
+                if (GetPrivateKey(saml2RequestResponse.Config.SigningCertificate) == null)
                 {
                     throw new ArgumentException("No Private Key present in Signing Certificate or missing private key read credentials.");
                 }
@@ -59,6 +59,11 @@ namespace ITfoxtec.Identity.Saml2
             Debug.WriteLine("Saml2P: " + XmlDocument.OuterXml);
 #endif
             return this;
+        }
+
+        private static AsymmetricAlgorithm GetPrivateKey(X509Certificate2 certificate)
+        {
+            return certificate.GetECDsaPrivateKey() ?? certificate.GetRSAPrivateKey() ?? certificate.PrivateKey;
         }
 
         protected abstract T BindInternal(Saml2Request saml2RequestResponse, string messageName);
@@ -84,12 +89,15 @@ namespace ITfoxtec.Identity.Saml2
             if (saml2RequestResponse.Config == null)
                 throw new ArgumentNullException("saml2RequestResponse.Config");
 
-            if(saml2RequestResponse.SignatureValidationCertificates == null || saml2RequestResponse.SignatureValidationCertificates.Count() < 1)
+            var certificates = saml2RequestResponse.SignatureValidationCertificates;
+
+            if (certificates == null || !certificates.Any())
                 saml2RequestResponse.SignatureValidationCertificates = saml2RequestResponse.Config.SignatureValidationCertificates;
+
             if (saml2RequestResponse.SignatureAlgorithm == null)
                 saml2RequestResponse.SignatureAlgorithm = saml2RequestResponse.Config.SignatureAlgorithm;
 
-            if (saml2RequestResponse.SignatureValidationCertificates != null && saml2RequestResponse.SignatureValidationCertificates.Count(c => c.PublicKey == null) > 0)
+            if (certificates != null && certificates.Count(c => c.PublicKey == null) > 0)
                 throw new ArgumentException("No Public Key present in at least Signature Validation Certificate.");
 
             return saml2RequestResponse;

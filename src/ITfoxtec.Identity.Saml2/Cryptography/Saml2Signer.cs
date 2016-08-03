@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ITfoxtec.Identity.Saml2.Cryptography
 {
@@ -28,7 +24,7 @@ namespace ITfoxtec.Identity.Saml2.Cryptography
             if (certificate == null) throw new ArgumentNullException(nameof(certificate));
 
             Certificate = certificate;
-            Key = new X509AsymmetricSecurityKey(certificate);
+            Key = new X509AsymmetricSecurityKeyCng(certificate);
             SignatureAlgorithm = signatureAlgorithm;
         }
 
