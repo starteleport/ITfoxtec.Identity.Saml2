@@ -24,7 +24,7 @@ namespace ITfoxtec.Identity.Saml2.Cryptography
             if (certificate == null) throw new ArgumentNullException(nameof(certificate));
 
             Certificate = certificate;
-            Key = new X509AsymmetricSecurityKeyCng(certificate);
+            Key = new X509AsymmetricSecurityKey(certificate);
             SignatureAlgorithm = signatureAlgorithm;
         }
 
