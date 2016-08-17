@@ -142,7 +142,7 @@ namespace ITfoxtec.Identity.Saml2.Bindings
                 saml2RequestResponse.IdentityConfiguration.CertificateValidator.Validate(signatureValidationCertificate);
 
                 var saml2Sign = new Saml2SignedText(signatureValidationCertificate, SignatureAlgorithm);
-                if (saml2Sign.CheckSignature(Encoding.UTF8.GetBytes(new RawSaml2QueryString(queryString, messageName).SignedQueryString), signatureValue))
+                if (saml2Sign.CheckSignature(new RawSaml2QueryString(queryString, messageName).SignedQueryString, signatureValue))
                 {
                     // Signature is valid.
                     return;

@@ -1,8 +1,8 @@
-﻿namespace ITfoxtec.Saml2.Cryptography
-{
-    using System;
-    using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 
+namespace ITfoxtec.Identity.Saml2.Cryptography
+{
     public sealed class RSAPKCS1SHA1SignatureDescription : SignatureDescription
     {
         public RSAPKCS1SHA1SignatureDescription()

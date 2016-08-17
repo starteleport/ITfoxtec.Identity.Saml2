@@ -31,9 +31,12 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
         {
             var certificate = CertificateUtil.Load(MapPath(LegacyCertificate), "123");
             var sut = new Saml2SignedText(certificate, signatureAlgorithm);
-            var bytesToSign = Encoding.UTF8.GetBytes(Guid.NewGuid().ToString());
+            var signingText = Guid.NewGuid().ToString();
+            var bytesToSign = Encoding.UTF8.GetBytes(signingText);
 
             Assert.DoesNotThrow(() => sut.SignData(bytesToSign));
+            var signature = sut.SignData(bytesToSign);
+            Assert.That(sut.CheckSignature(signingText, signature), Is.True);
         }
 
         private string MapPath(string relativePath) => Path.Combine(TestContext.CurrentContext.TestDirectory, relativePath);

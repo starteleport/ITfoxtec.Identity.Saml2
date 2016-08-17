@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace ITfoxtec.Saml2.Cryptography
+namespace ITfoxtec.Identity.Saml2.Cryptography
 {
     public sealed class RSAPKCS1SHA256SignatureDescription : SignatureDescription
     {

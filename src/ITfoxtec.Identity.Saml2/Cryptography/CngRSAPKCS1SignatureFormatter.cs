@@ -1,10 +1,10 @@
-﻿namespace ITfoxtec.Saml2.Cryptography
-{
-    using System;
-    using System.Diagnostics.Contracts;
-    using System.Security.Cryptography;
-    using Security.Cryptography;
+﻿using System;
+using System.Diagnostics.Contracts;
+using System.Security.Cryptography;
+using Security.Cryptography;
 
+namespace ITfoxtec.Identity.Saml2.Cryptography
+{
     public class CngRSAPKCS1SignatureFormatter : RSAPKCS1SignatureFormatter
     {
         private RSA rsaKey;
