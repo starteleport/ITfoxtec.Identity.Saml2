@@ -2,9 +2,8 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using System.Xml.Linq;
-using ITfoxtec.Identity.Saml2.Cryptography.Cryptography;
+using ITfoxtec.Identity.Saml2.Cryptography;
 using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Saml2.Cryptography;
 
 namespace ITfoxtec.Identity.Saml2.Extensions
 {
@@ -17,7 +16,7 @@ namespace ITfoxtec.Identity.Saml2.Extensions
         /// Signs an XmlDocument with an xml signature using the signing certificate given as argument to the method.
         /// </summary>
         /// <param name="certificate">The certificate used to sign the document</param>
-        /// <param name="certificate">The Signature Algorithm used to sign the document</param>
+        /// <param name="signatureAlgorithm">The Signature Algorithm used to sign the document</param>
         /// <param name="includeOption">Certificate include option</param>
         /// <param name="id">The is of the topmost element in the xmldocument</param>
         internal static XmlDocument SignDocument(this XmlDocument xmlDocument, X509Certificate2 certificate, string signatureAlgorithm, X509IncludeOption includeOption, string id)

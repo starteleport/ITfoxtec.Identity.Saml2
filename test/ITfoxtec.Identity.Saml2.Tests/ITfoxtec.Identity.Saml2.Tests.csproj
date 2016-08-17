@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="Cryptography\Saml2SignedTextTests.cs" />
     <Compile Include="Cryptography\Saml2SignedXmlTests.cs" />
-    <Compile Include="Cryptography\Saml2SignerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
