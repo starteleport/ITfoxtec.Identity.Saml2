@@ -7,6 +7,8 @@ using System.Xml;
 using ITfoxtec.Identity.Saml2.Schemas;
 using ITfoxtec.Identity.Saml2.Http;
 using System.IdentityModel.Tokens;
+using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2
 {

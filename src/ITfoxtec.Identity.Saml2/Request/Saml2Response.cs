@@ -5,6 +5,7 @@ using ITfoxtec.Identity.Saml2.Util;
 using ITfoxtec.Identity.Saml2.Schemas;
 using ITfoxtec.Identity.Saml2.Cryptography;
 using System.IdentityModel.Tokens;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2
 {

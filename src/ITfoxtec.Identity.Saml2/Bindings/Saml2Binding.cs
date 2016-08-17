@@ -1,13 +1,12 @@
 ﻿using ITfoxtec.Identity.Saml2.Http;
 using ITfoxtec.Identity.Saml2.Schemas;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Xml;
+using ITfoxtec.Identity.Saml2.Request;
+using Security.Cryptography.X509Certificates;
 
 namespace ITfoxtec.Identity.Saml2
 {
@@ -34,7 +33,7 @@ namespace ITfoxtec.Identity.Saml2
 
         public T Bind(Saml2Response saml2Response)
         {
-            return BindInternal(saml2Response as Saml2Request, Saml2Constants.Message.SamlResponse);
+            return BindInternal(saml2Response, Saml2Constants.Message.SamlResponse);
         }
 
         protected virtual Saml2Binding<T> BindInternal(Saml2Request saml2RequestResponse)
@@ -87,12 +86,12 @@ namespace ITfoxtec.Identity.Saml2
 
         public Saml2Request Unbind(HttpRequest request, Saml2Request saml2Request)
         {
-            return UnbindInternal(request, saml2Request as Saml2Request, Saml2Constants.Message.SamlRequest);
+            return UnbindInternal(request, saml2Request, Saml2Constants.Message.SamlRequest);
         }
 
         public Saml2Response Unbind(HttpRequest request, Saml2Response saml2Response)
         {
-            return UnbindInternal(request, saml2Response as Saml2Request, Saml2Constants.Message.SamlResponse) as Saml2Response;
+            return UnbindInternal(request, saml2Response, Saml2Constants.Message.SamlResponse) as Saml2Response;
         }
 
         protected Saml2Request UnbindInternal(HttpRequest request, Saml2Request saml2RequestResponse)

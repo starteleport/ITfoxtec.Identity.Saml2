@@ -11,6 +11,7 @@ using System.Security.Cryptography.X509Certificates;
 using ITfoxtec.Identity.Saml2.Util;
 using ITfoxtec.Identity.Saml2.Http;
 using System.IdentityModel.Tokens;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2
 {

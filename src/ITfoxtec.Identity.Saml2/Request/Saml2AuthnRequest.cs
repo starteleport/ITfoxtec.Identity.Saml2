@@ -4,6 +4,7 @@ using System.Xml;
 using System.Xml.Linq;
 using ITfoxtec.Identity.Saml2.Schemas;
 using System;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2
 {

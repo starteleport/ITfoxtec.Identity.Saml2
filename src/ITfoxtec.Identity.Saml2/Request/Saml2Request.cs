@@ -1,18 +1,19 @@
-﻿using ITfoxtec.Identity.Saml2.Configuration;
-using ITfoxtec.Identity.Saml2.Cryptography;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IdentityModel.Configuration;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.Xml;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Cryptography.Cryptography;
 using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Schemas;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Generic Saml2 Request.
@@ -41,7 +42,6 @@ namespace ITfoxtec.Identity.Saml2
             get { return Id.Value; }
             set { Id = new Saml2Id(value); }
         }
-
         /// <summary>
         /// [Required]
         /// The version of this request. The identifier for the version of SAML defined in this specification is "2.0".
@@ -187,17 +187,15 @@ namespace ITfoxtec.Identity.Saml2
             Destination = XmlDocument.DocumentElement.Attributes[Saml2Constants.Message.Destination].GetValueOrNull<Uri>();
 
             var extensionsData = XmlDocument.DocumentElement[Saml2Constants.Message.Extensions, Saml2Constants.ProtocolNamespace.OriginalString].GetValueOrNull<string>();
-            if(extensionsData != null)
+            if (extensionsData != null)
             {
-                Extensions = new Schemas.Extensions { Data = extensionsData };
+                Extensions = new Schemas.Extensions {Data = extensionsData};
             }
 
             DecryptMessage();
 
             if (validateXmlSignature)
-            {
                 ValidateXmlSignature();
-            }
         }
 
         protected abstract void ValidateElementName();
@@ -230,7 +228,7 @@ namespace ITfoxtec.Identity.Saml2
 
         protected SignatureValidation ValidateXmlSignature(XmlElement xmlElement)
         {
-            var xmlSignatures = xmlElement.SelectNodes($"*[local-name()='{Saml2Constants.Message.Signature}' and namespace-uri()='{Saml2SignedXml.XmlDsigNamespaceUrl}']");
+            var xmlSignatures = xmlElement.SelectNodes($"*[local-name()='{Saml2Constants.Message.Signature}' and namespace-uri()='{SignedXml.XmlDsigNamespaceUrl}']");
             if(xmlSignatures.Count == 0)
             {
                 return SignatureValidation.NotPresent;
@@ -244,9 +242,9 @@ namespace ITfoxtec.Identity.Saml2
             {
                 IdentityConfiguration.CertificateValidator.Validate(signatureValidationCertificate);
 
-                var signedXml = new Saml2SignedXml(xmlElement, signatureValidationCertificate, SignatureAlgorithm);
+                var signedXml = new Saml2SignedXml(xmlElement);
                 signedXml.LoadXml(xmlSignatures[0] as XmlElement);
-                if (signedXml.CheckSignature())
+                if (signedXml.CheckSignature(signatureValidationCertificate))
                 {
                     // Signature is valid.
                     return SignatureValidation.Valid;

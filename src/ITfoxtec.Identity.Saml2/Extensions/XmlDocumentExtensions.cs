@@ -1,11 +1,12 @@
-﻿using ITfoxtec.Identity.Saml2.Cryptography;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Cryptography.Cryptography;
+using ITfoxtec.Identity.Saml2.Schemas;
+using ITfoxtec.Saml2.Cryptography;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     /// <summary>
     /// Extension methods for XmlDocument
@@ -26,8 +27,8 @@ namespace ITfoxtec.Identity.Saml2
                 throw new ArgumentNullException(nameof(certificate));
             }
  
-            var signedXml = new Saml2SignedXml(xmlDocument.DocumentElement, certificate, signatureAlgorithm);
-            signedXml.ComputeSignature(includeOption, id);
+            var signedXml = new Saml2SignedXml(xmlDocument.DocumentElement);
+            signedXml.ComputeSignature(certificate, includeOption, id, signatureAlgorithm);
 
             var issuer = xmlDocument.DocumentElement[Saml2Constants.Message.Issuer, Saml2Constants.AssertionNamespace.OriginalString];
             xmlDocument.DocumentElement.InsertAfter(xmlDocument.ImportNode(signedXml.GetXml(), true), issuer);

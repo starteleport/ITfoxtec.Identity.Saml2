@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2
 {
