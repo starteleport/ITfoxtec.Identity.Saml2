@@ -4,7 +4,6 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Security.Cryptography;
-using Security.Cryptography.X509Certificates;
 
 namespace ITfoxtec.Identity.Saml2.Cryptography
 {
@@ -12,15 +11,12 @@ namespace ITfoxtec.Identity.Saml2.Cryptography
     {
         private readonly string _signatureAlgorithm;
         private readonly AsymmetricAlgorithm _algorithm;
-        private readonly CngKey _cngKey;
 
         public Saml2SignedText(X509Certificate2 certificate, string signatureAlgorithm)
         {
-            if (certificate.HasCngKey())
+            _algorithm = certificate.GetCertificatePrivateKey();
+            if (_algorithm is RSACng)
             {
-                _cngKey = certificate.GetCngPrivateKey();
-
-                _algorithm = new RSACng(_cngKey);
                 _signatureAlgorithm = signatureAlgorithm ?? SecurityAlgorithms.RsaSha1Signature;
 
                 switch (signatureAlgorithm)
@@ -39,8 +35,7 @@ namespace ITfoxtec.Identity.Saml2.Cryptography
             }
             else
             {
-                _signatureAlgorithm = signatureAlgorithm ?? certificate.PrivateKey.SignatureAlgorithm;
-                _algorithm = certificate.PrivateKey;
+                _signatureAlgorithm = signatureAlgorithm ?? _algorithm.SignatureAlgorithm;
             }
         }
 
@@ -101,10 +96,6 @@ namespace ITfoxtec.Identity.Saml2.Cryptography
             throw new NotSupportedException("Only RSA and DSA are supported");
         }
 
-        public void Dispose()
-        {
-            _algorithm.Dispose();
-            _cngKey?.Dispose();
-        }
+        public void Dispose() => _algorithm.Dispose();
     }
 }
