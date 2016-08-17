@@ -45,11 +45,33 @@ namespace ITfoxtec.Identity.Saml2
             if (saml2RequestResponse.Config == null)
                 throw new ArgumentNullException("saml2RequestResponse.Config");
 
-            if (saml2RequestResponse.Config.SigningCertificate != null)
+            var signingCertificate = saml2RequestResponse.Config.SigningCertificate;
+            if (signingCertificate != null)
             {
-                if (GetPrivateKey(saml2RequestResponse.Config.SigningCertificate) == null)
+                if (signingCertificate.HasCngKey())
                 {
-                    throw new ArgumentException("No Private Key present in Signing Certificate or missing private key read credentials.");
+                    var privateKey = signingCertificate.GetCngPrivateKey();
+                    if (privateKey == null)
+                    {
+                        throw new ArgumentException("No Private Key present in Signing Certificate or missing private key read credentials.");
+                    }
+
+                    if (privateKey.Algorithm.Algorithm != "RSA")
+                    {
+                        throw new ArgumentException("The Private Key present in Signing Certificate must be RSA.");
+                    }
+                }
+                else
+                {
+                    if (signingCertificate.PrivateKey == null)
+                    {
+                        throw new ArgumentException("No Private Key present in Signing Certificate or missing private key read credentials.");
+                    }
+
+                    if (!(signingCertificate.PrivateKey is DSA || signingCertificate.PrivateKey is RSACryptoServiceProvider))
+                    {
+                        throw new ArgumentException("The Private Key present in Signing Certificate must be either DSA or RSACryptoServiceProvider.");
+                    }
                 }
             }
 
@@ -59,11 +81,6 @@ namespace ITfoxtec.Identity.Saml2
             Debug.WriteLine("Saml2P: " + XmlDocument.OuterXml);
 #endif
             return this;
-        }
-
-        private static AsymmetricAlgorithm GetPrivateKey(X509Certificate2 certificate)
-        {
-            return certificate.GetECDsaPrivateKey() ?? certificate.GetRSAPrivateKey() ?? certificate.PrivateKey;
         }
 
         protected abstract T BindInternal(Saml2Request saml2RequestResponse, string messageName);
