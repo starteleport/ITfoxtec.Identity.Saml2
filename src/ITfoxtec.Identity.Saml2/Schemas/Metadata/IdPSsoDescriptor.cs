@@ -4,6 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Extensions;
 
 namespace ITfoxtec.Identity.Saml2.Schemas.Metadata
 {

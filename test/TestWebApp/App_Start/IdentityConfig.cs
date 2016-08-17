@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Security;
 using System.Web;
 using System.Web.Helpers;
+using ITfoxtec.Identity.Saml2.Configuration;
 
 namespace TestWebApp
 {

@@ -3,7 +3,6 @@ using System.IdentityModel.Tokens;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using ITfoxtec.Identity.Saml2.Cryptography;
-using ITfoxtec.Identity.Saml2.Cryptography.Cryptography;
 using ITfoxtec.Identity.Saml2.Extensions;
 using ITfoxtec.Identity.Saml2.Util;
 using NUnit.Framework;

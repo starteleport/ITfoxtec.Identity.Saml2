@@ -1,7 +1,7 @@
-﻿using ITfoxtec.Identity.Saml2.Schemas.Metadata;
-using System.Xml;
+﻿using System.Xml;
+using ITfoxtec.Identity.Saml2.Schemas.Metadata;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Saml2 Metadata.

@@ -9,7 +9,7 @@ using System.Security.Cryptography.Xml;
 using System.Xml;
 using System.Xml.Linq;
 using ITfoxtec.Identity.Saml2.Configuration;
-using ITfoxtec.Identity.Saml2.Cryptography.Cryptography;
+using ITfoxtec.Identity.Saml2.Cryptography;
 using ITfoxtec.Identity.Saml2.Extensions;
 using ITfoxtec.Identity.Saml2.Schemas;
 

@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
+using ITfoxtec.Identity.Saml2.Bindings;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Mvc.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace TestWebApp.Controllers
 {

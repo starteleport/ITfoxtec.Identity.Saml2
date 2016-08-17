@@ -9,6 +9,9 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Mvc.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace TestWebApp.Controllers
 {

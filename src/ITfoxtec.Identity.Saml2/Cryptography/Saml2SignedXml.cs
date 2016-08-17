@@ -1,6 +1,4 @@
-﻿using System;
-using System.IdentityModel.Tokens;
-using System.Reflection;
+﻿using System.IdentityModel.Tokens;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;

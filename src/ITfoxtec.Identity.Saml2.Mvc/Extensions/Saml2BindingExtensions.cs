@@ -1,7 +1,9 @@
 ﻿using System.Text;
 using System.Web.Mvc;
+using ITfoxtec.Identity.Saml2.Bindings;
+using ITfoxtec.Identity.Saml2.Request;
 
-namespace ITfoxtec.Identity.Saml2.Mvc
+namespace ITfoxtec.Identity.Saml2.Mvc.Extensions
 {
     /// <summary>
     /// Extension methods for Bindings

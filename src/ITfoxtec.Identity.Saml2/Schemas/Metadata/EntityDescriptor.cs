@@ -7,7 +7,9 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Configuration;
 using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2.Schemas.Metadata
 {

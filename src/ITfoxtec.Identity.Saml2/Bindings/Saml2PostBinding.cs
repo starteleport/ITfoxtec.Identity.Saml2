@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Xml;
-using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.Http;
-using System.IdentityModel.Tokens;
 using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Http;
 using ITfoxtec.Identity.Saml2.Request;
+using ITfoxtec.Identity.Saml2.Schemas;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Bindings
 {
     public class Saml2PostBinding : Saml2Binding<Saml2PostBinding>
     {

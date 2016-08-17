@@ -1,11 +1,12 @@
-﻿using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.IdentityModel.Services;
 using System.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Threading;
+using ITfoxtec.Identity.Saml2.Request;
+using ITfoxtec.Identity.Saml2.Schemas;
 
-namespace ITfoxtec.Identity.Saml2.Mvc
+namespace ITfoxtec.Identity.Saml2.Mvc.Extensions
 {
     public static class Saml2ResponseExtensions
     {

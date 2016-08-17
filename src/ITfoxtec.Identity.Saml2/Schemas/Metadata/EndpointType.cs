@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Extensions;
 
 namespace ITfoxtec.Identity.Saml2.Schemas.Metadata
 {

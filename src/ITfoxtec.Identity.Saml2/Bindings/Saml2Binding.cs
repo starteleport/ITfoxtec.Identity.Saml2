@@ -1,14 +1,16 @@
-﻿using ITfoxtec.Identity.Saml2.Http;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Xml;
+using ITfoxtec.Identity.Saml2.Cryptography;
+using ITfoxtec.Identity.Saml2.Http;
 using ITfoxtec.Identity.Saml2.Request;
+using ITfoxtec.Identity.Saml2.Schemas;
+using Security.Cryptography;
 using Security.Cryptography.X509Certificates;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Bindings
 {
     public abstract class Saml2Binding<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     [Serializable]
     public class Saml2RequestException : Exception

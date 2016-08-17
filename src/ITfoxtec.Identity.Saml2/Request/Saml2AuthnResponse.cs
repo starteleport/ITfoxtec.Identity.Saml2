@@ -1,23 +1,21 @@
-﻿using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.Tokens;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IdentityModel.Protocols.WSTrust;
+using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
-using System.Xml;
-using System.Security.Cryptography.X509Certificates;
-using System.Globalization;
-using System.IdentityModel.Tokens;
-using ITfoxtec.Identity.Saml2.Cryptography;
 using System.Security.Cryptography;
-using System.Diagnostics;
-using ITfoxtec.Identity.Saml2.Util;
-using System.Collections.Generic;
-using System.IdentityModel.Protocols.WSTrust;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml;
 using System.Xml.Linq;
-using System.IO;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Cryptography;
 using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Schemas;
+using ITfoxtec.Identity.Saml2.Tokens;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Saml2 Authn Response.
