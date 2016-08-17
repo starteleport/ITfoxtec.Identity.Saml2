@@ -38,7 +38,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ITfoxtec.SAML2.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Security.Cryptography, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -126,7 +127,6 @@
     <Compile Include="Util\Saml2StatusCodeUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ITfoxtec.SAML2.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
