@@ -49,10 +49,14 @@
   <ItemGroup>
     <Compile Include="Cryptography\Saml2SignedTextTests.cs" />
     <Compile Include="Cryptography\Saml2SignedXmlTests.cs" />
+    <Compile Include="Cryptography\Saml2EncryptedXmlTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestFiles\legacy-enc-saml-test.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\legacy-saml-test.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

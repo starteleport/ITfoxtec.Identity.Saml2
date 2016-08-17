@@ -76,6 +76,7 @@
     <Compile Include="Cryptography\Saml2SignedXml.cs" />
     <Compile Include="Cryptography\Saml2Signer.cs" />
     <Compile Include="Cryptography\SignatureAlgorithm.cs" />
+    <Compile Include="Cryptography\X509CertificateExtensions.cs" />
     <Compile Include="Extensions\Saml2BindingExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\XDocumentExtensions.cs" />
