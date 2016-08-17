@@ -39,12 +39,12 @@ namespace ITfoxtec.Identity.Saml2.Request
         /// <summary>
         /// Gets the first instant in time at which this security token is valid.
         /// </summary>
-        public DateTime SecurityTokenValidFrom { get { return Saml2SecurityToken.ValidFrom; } }
+        public DateTime SecurityTokenValidFrom => Saml2SecurityToken.ValidFrom;
 
         /// <summary>
         /// Gets the last instant in time at which this security token is valid.
         /// </summary>
-        public DateTime SecurityTokenValidTo { get { return Saml2SecurityToken.ValidTo; } }
+        public DateTime SecurityTokenValidTo => Saml2SecurityToken.ValidTo;
 
         /// <summary>
         /// Saml2 Security Token Handler.
@@ -218,19 +218,14 @@ namespace ITfoxtec.Identity.Saml2.Request
             }
         }
 
-        XmlElement assertionElement = null;
         protected override XmlElement GetAssertionElement()
         {
-            if (assertionElement == null)
+            var assertionElements = XmlDocument.DocumentElement.SelectNodes($"//*[local-name()='{Saml2Constants.Message.Assertion}']");
+            if (assertionElements.Count != 1)
             {
-                var assertionElements = XmlDocument.DocumentElement.SelectNodes($"//*[local-name()='{Saml2Constants.Message.Assertion}']");
-                if (assertionElements.Count != 1)
-                {
-                    throw new Saml2RequestException("There is not exactly one Assertion element.");
-                }
-                assertionElement = assertionElements[0] as XmlElement;
+                throw new Saml2RequestException("There is not exactly one Assertion element.");
             }
-            return assertionElement;
+            return assertionElements[0] as XmlElement;
         }
 
         private void ValidateAssertionExpiration(XmlNode assertionElement)

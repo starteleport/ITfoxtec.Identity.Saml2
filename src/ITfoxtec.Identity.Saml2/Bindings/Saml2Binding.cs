@@ -8,7 +8,6 @@ using ITfoxtec.Identity.Saml2.Http;
 using ITfoxtec.Identity.Saml2.Request;
 using ITfoxtec.Identity.Saml2.Schemas;
 using Security.Cryptography;
-using Security.Cryptography.X509Certificates;
 
 namespace ITfoxtec.Identity.Saml2.Bindings
 {
@@ -49,27 +48,23 @@ namespace ITfoxtec.Identity.Saml2.Bindings
             var signingCertificate = saml2RequestResponse.Config.SigningCertificate;
             if (signingCertificate != null)
             {
-                if (signingCertificate.HasCngKey())
+                var privateKey = signingCertificate.GetCertificatePrivateKey();
+                if (privateKey == null)
                 {
-                    var privateKey = signingCertificate.GetCngPrivateKey();
-                    if (privateKey == null)
-                    {
-                        throw new ArgumentException("No Private Key present in Signing Certificate or missing private key read credentials.");
-                    }
+                    throw new ArgumentException(
+                        "No Private Key present in Signing Certificate or missing private key read credentials.");
+                }
 
-                    if (privateKey.Algorithm.Algorithm != "RSA")
+                if (privateKey is ICngAsymmetricAlgorithm)
+                {
+                    if (((ICngAsymmetricAlgorithm)privateKey).Key.Algorithm.Algorithm != "RSA")
                     {
                         throw new ArgumentException("The Private Key present in Signing Certificate must be RSA.");
                     }
                 }
                 else
                 {
-                    if (signingCertificate.PrivateKey == null)
-                    {
-                        throw new ArgumentException("No Private Key present in Signing Certificate or missing private key read credentials.");
-                    }
-
-                    if (!(signingCertificate.PrivateKey is DSA || signingCertificate.PrivateKey is RSACryptoServiceProvider))
+                    if (!(privateKey is DSA || privateKey is RSACryptoServiceProvider))
                     {
                         throw new ArgumentException("The Private Key present in Signing Certificate must be either DSA or RSACryptoServiceProvider.");
                     }
