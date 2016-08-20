@@ -228,11 +228,26 @@ namespace ITfoxtec.Identity.Saml2.Request
 
         protected SignatureValidation ValidateXmlSignature(XmlElement xmlElement)
         {
-            var xmlSignatures = xmlElement.SelectNodes($"*[local-name()='{Saml2Constants.Message.Signature}' and namespace-uri()='{SignedXml.XmlDsigNamespaceUrl}']");
-            if(xmlSignatures.Count == 0)
+            var documentElement = xmlElement;
+
+            //http://stackoverflow.com/questions/25394137/verify-signature-on-saml-assertion
+            if (!(xmlElement.ParentNode is XmlDocument))
+            {
+                var newDoc = new XmlDocument();
+                newDoc.PreserveWhitespace = true;
+                newDoc.AppendChild(newDoc.ImportNode(xmlElement.ParentNode, true));
+                documentElement = newDoc.DocumentElement;
+            }
+
+            var xmlSignatures =
+                documentElement.SelectNodes(
+                    $"*[local-name()='{Saml2Constants.Message.Signature}' and namespace-uri()='{SignedXml.XmlDsigNamespaceUrl}']");
+
+            if (xmlSignatures.Count == 0)
             {
                 return SignatureValidation.NotPresent;
             }
+
             if (xmlSignatures.Count > 1)
             {
                 throw new Saml2RequestException("There is more then one Signature element.");
@@ -242,7 +257,7 @@ namespace ITfoxtec.Identity.Saml2.Request
             {
                 IdentityConfiguration.CertificateValidator.Validate(signatureValidationCertificate);
 
-                var signedXml = new Saml2SignedXml(xmlElement);
+                var signedXml = new Saml2SignedXml(documentElement);
                 signedXml.LoadXml(xmlSignatures[0] as XmlElement);
                 if (signedXml.CheckSignature(signatureValidationCertificate))
                 {

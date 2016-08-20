@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\Saml2ResponseTester.cs" />
+    <Compile Include="Cryptography\Saml2RequestTests.cs" />
     <Compile Include="Cryptography\Saml2SignedTextTests.cs" />
     <Compile Include="Cryptography\Saml2SignedXmlTests.cs" />
     <Compile Include="Cryptography\Saml2EncryptedXmlTests.cs" />
@@ -60,6 +62,9 @@
     <None Include="TestFiles\legacy-saml-test.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\okta.cert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\saml-test.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -69,6 +74,11 @@
       <Project>{BB8FE53F-B198-4DCF-B51C-B11CC0215AE7}</Project>
       <Name>ITfoxtec.Identity.Saml2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFiles\saml2Response.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
