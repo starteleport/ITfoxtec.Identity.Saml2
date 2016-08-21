@@ -1,5 +1,6 @@
 using System.IO;
 using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Request;
 using ITfoxtec.Identity.Saml2.Util;
 using NUnit.Framework;
 
@@ -19,7 +20,8 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
                 SignatureValidationCertificates = new[] {certificate}
             };
 
-            sut.ReadPublicly(signedXml, true);
+            var ex = Assert.Throws<Saml2RequestException>(() => sut.ReadPublicly(signedXml, true));
+            Assert.That(ex.Message, Does.Contain("Assertion has expired"));
         }
 
         private string MapPath(string relativePath) => Path.Combine(TestContext.CurrentContext.TestDirectory, relativePath);
