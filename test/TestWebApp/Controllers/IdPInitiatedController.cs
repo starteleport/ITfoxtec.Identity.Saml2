@@ -1,5 +1,7 @@
-﻿using ITfoxtec.Identity.Saml2;
-using ITfoxtec.Identity.Saml2.Mvc;
+﻿using ITfoxtec.Identity.Saml2.Bindings;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Mvc.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 using ITfoxtec.Identity.Saml2.Schemas;
 using ITfoxtec.Identity.Saml2.Util;
 using System.Web.Mvc;
@@ -8,10 +10,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
-using ITfoxtec.Identity.Saml2.Bindings;
-using ITfoxtec.Identity.Saml2.Configuration;
-using ITfoxtec.Identity.Saml2.Mvc.Extensions;
-using ITfoxtec.Identity.Saml2.Request;
 
 namespace TestWebApp.Controllers
 {

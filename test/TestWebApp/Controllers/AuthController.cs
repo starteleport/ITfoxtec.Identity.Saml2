@@ -1,6 +1,4 @@
-﻿using ITfoxtec.Identity.Saml2;
-using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.Mvc;
+﻿using ITfoxtec.Identity.Saml2.Schemas;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

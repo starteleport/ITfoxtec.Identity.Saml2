@@ -1,12 +1,13 @@
-﻿using ITfoxtec.Identity.Saml2.Schemas;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Authentication;
-using System;
+﻿using System;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using ITfoxtec.Identity.Saml2.Request;
+using ITfoxtec.Identity.Saml2.Schemas;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Authentication;
 
-namespace ITfoxtec.Identity.Saml2.MvcCore
+namespace ITfoxtec.Identity.Saml2.MvcCore.Extensions
 {
     public static class Saml2ResponseExtensions
     {

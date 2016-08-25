@@ -23,7 +23,7 @@ namespace ITfoxtec.Identity.Saml2.Schemas
         /// <summary>
         /// The XML namespace of the SAML2 Assertion.
         /// </summary>
-        internal static readonly Uri AssertionNamespace = new Uri("urn:oasis:names:tc:SAML:2.0:assertion");
+        public static readonly Uri AssertionNamespace = new Uri("urn:oasis:names:tc:SAML:2.0:assertion");
         /// <summary>
         /// The XML namespace of the SAML2 Assertion.
         /// </summary>
@@ -36,7 +36,7 @@ namespace ITfoxtec.Identity.Saml2.Schemas
         /// <summary>
         /// The XML namespace of the SAML2 Protocol.
         /// </summary>
-        internal static readonly Uri ProtocolNamespace = new Uri("urn:oasis:names:tc:SAML:2.0:protocol");
+        public static readonly Uri ProtocolNamespace = new Uri("urn:oasis:names:tc:SAML:2.0:protocol");
         /// <summary>
         /// The XML namespace of the SAML2 Protocol.
         /// </summary>
@@ -108,6 +108,8 @@ namespace ITfoxtec.Identity.Saml2.Schemas
 
             internal const string NotOnOrAfter = "NotOnOrAfter";
 
+            internal const string NotBefore = "NotBefore";
+
             internal const string Reason = "Reason";
 
             internal const string NameIdPolicy = "NameIDPolicy";
@@ -131,7 +133,12 @@ namespace ITfoxtec.Identity.Saml2.Schemas
             internal const string SubjectConfirmation = "SubjectConfirmation";
 
             internal const string SubjectConfirmationData = "SubjectConfirmationData";
-        }
 
+            internal const string Address = "Address";
+
+            internal const string Recipient = "Recipient";
+
+            internal const string Method = "Method";
+        }
     }
 }

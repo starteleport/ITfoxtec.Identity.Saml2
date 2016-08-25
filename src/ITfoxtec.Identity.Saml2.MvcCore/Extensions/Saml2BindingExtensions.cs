@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
+﻿using ITfoxtec.Identity.Saml2.Bindings;
+using ITfoxtec.Identity.Saml2.Request;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ITfoxtec.Identity.Saml2.MvcCore
+namespace ITfoxtec.Identity.Saml2.MvcCore.Extensions
 {
     /// <summary>
     /// Extension methods for Bindings

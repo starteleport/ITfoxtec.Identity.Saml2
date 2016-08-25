@@ -1,4 +1,4 @@
-﻿using ITfoxtec.Identity.Saml2;
+﻿using ITfoxtec.Identity.Saml2.Configuration;
 using ITfoxtec.Identity.Saml2.Schemas.Metadata;
 using ITfoxtec.Identity.Saml2.Util;
 using System;

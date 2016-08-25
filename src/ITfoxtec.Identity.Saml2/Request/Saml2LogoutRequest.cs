@@ -10,6 +10,7 @@ using ITfoxtec.Identity.Saml2.Claims;
 using ITfoxtec.Identity.Saml2.Configuration;
 using ITfoxtec.Identity.Saml2.Extensions;
 using ITfoxtec.Identity.Saml2.Schemas;
+using ITfoxtec.Identity.Saml2.Util;
 
 namespace ITfoxtec.Identity.Saml2.Request
 {
@@ -86,7 +87,7 @@ namespace ITfoxtec.Identity.Saml2.Request
 
             if (NameId != null)
             {
-                yield return new XElement(Saml2Constants.AssertionNamespaceX + Saml2Constants.Message.NameId, NameId.Value, new XAttribute(Saml2Constants.Message.Format, NameId.Format));
+                yield return NameId.ToXElement();
             }
 
             if (SessionIndex != null)

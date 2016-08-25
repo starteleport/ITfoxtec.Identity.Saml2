@@ -1,6 +1,4 @@
-﻿using ITfoxtec.Identity.Saml2;
-using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.MvcCore;
+﻿using ITfoxtec.Identity.Saml2.Schemas;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,6 +8,10 @@ using System.Security.Claims;
 using System.Linq;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
+using ITfoxtec.Identity.Saml2.Bindings;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.MvcCore.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 using ITfoxtec.Identity.Saml2.Util;
 
 namespace TestIdPCore.Controllers
