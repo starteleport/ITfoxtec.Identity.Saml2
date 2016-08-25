@@ -28,7 +28,7 @@ namespace ITfoxtec.Identity.Saml2.Util
             {
                 return GenericConvertValue<T, DateTime>(DateTime.Parse(value, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal));
             }
-            if(genericType == typeof(Saml2NameIdentifier))
+            if (genericType == typeof(Saml2NameIdentifier))
             {
                 return GenericConvertValue<T, Saml2NameIdentifier>(new Saml2NameIdentifier(value, ConvertValue<Uri>(xmlNode.Attributes[Saml2Constants.Message.Format]?.Value, xmlNode)));
             }

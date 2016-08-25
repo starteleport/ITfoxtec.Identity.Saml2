@@ -54,9 +54,12 @@ namespace ITfoxtec.Identity.Saml2
 
             InResponseTo = XmlDocument.DocumentElement.Attributes[Saml2Constants.Message.InResponseTo].GetValueOrNull<Saml2Id>();
 
-            Status = Saml2StatusCodeUtil.ToEnum(XmlDocument.DocumentElement[Saml2Constants.Message.Status, Saml2Constants.ProtocolNamespace.OriginalString][Saml2Constants.Message.StatusCode, Saml2Constants.ProtocolNamespace.OriginalString].Attributes[Saml2Constants.Message.Value].GetValueOrNull<string>());
-
-
+            Status =
+                Saml2StatusCodeUtil.ToEnum(
+                    XmlDocument.DocumentElement[
+                        Saml2Constants.Message.Status, Saml2Constants.ProtocolNamespace.OriginalString][
+                            Saml2Constants.Message.StatusCode, Saml2Constants.ProtocolNamespace.OriginalString]
+                        .Attributes[Saml2Constants.Message.Value].GetValueOrNull<string>());
         }      
     }
 }

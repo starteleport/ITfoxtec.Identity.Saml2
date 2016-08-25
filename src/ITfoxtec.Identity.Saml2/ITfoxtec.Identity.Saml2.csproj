@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Services" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -117,6 +118,7 @@
     <Compile Include="Util\GenericTypeConverter.cs" />
     <Compile Include="Util\RawSaml2QueryString.cs" />
     <Compile Include="Util\Saml2StatusCodeUtil.cs" />
+    <Compile Include="Util\Saml2ToXElementExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ITfoxtec.SAML2.snk" />

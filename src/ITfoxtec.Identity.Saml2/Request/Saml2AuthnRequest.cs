@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.ServiceModel;
+using System.IdentityModel.Tokens;
 using System.Xml;
 using System.Xml.Linq;
 using ITfoxtec.Identity.Saml2.Schemas;
 using System;
+using ITfoxtec.Identity.Saml2.Util;
 
 namespace ITfoxtec.Identity.Saml2
 {
@@ -13,6 +14,18 @@ namespace ITfoxtec.Identity.Saml2
     public class Saml2AuthnRequest : Saml2Request
     {
         const string elementName = Saml2Constants.Message.AuthnRequest;
+
+        /// <summary>
+        /// Specifies the requested subject of the resulting assertion(s). This may include one or more
+        /// <saml:SubjectConfirmation> elements to indicate how and/or by whom the resulting assertions
+        /// can be confirmed. For more information on this element, see Section 2.4.
+        ///  
+        /// If entirely omitted or if no identifier is included, the presenter of the message is presumed to be the
+        /// requested subject. If no <saml:SubjectConfirmation> elements are included, then the presenter
+        /// is presumed to be the only attesting entity required and the method is implied by the profile of use
+        /// and/or the policies of the identity provider.
+        /// </summary>
+        public Saml2Subject Subject { get; set; }
 
         ///<summary>
         /// [Optional]
@@ -102,6 +115,11 @@ namespace ITfoxtec.Identity.Saml2
             if (AssertionConsumerServiceUrl != null)
             {
                 yield return new XAttribute(Saml2Constants.Message.AssertionConsumerServiceURL, AssertionConsumerServiceUrl);
+            }
+
+            if (Subject != null)
+            {
+                yield return Subject.ToXElement();
             }
 
             if (NameIdPolicy != null)
