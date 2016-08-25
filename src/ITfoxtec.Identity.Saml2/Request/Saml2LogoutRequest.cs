@@ -1,6 +1,4 @@
-﻿using ITfoxtec.Identity.Saml2.Claims;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IdentityModel.Tokens;
@@ -8,9 +6,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Claims;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Schemas;
 using ITfoxtec.Identity.Saml2.Util;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Saml2 Logout Request.

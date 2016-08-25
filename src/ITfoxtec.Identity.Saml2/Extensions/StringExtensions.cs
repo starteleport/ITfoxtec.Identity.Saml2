@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     /// <summary>
     /// Extension methods for string

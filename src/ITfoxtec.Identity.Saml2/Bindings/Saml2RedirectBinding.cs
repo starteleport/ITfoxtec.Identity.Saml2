@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Text;
-using System.Xml;
-using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using ITfoxtec.Identity.Saml2.Util;
+using System.Text;
+using ITfoxtec.Identity.Saml2.Cryptography;
 using ITfoxtec.Identity.Saml2.Http;
-using System.IdentityModel.Tokens;
+using ITfoxtec.Identity.Saml2.Request;
+using ITfoxtec.Identity.Saml2.Schemas;
+using ITfoxtec.Identity.Saml2.Util;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Bindings
 {
     public class Saml2RedirectBinding : Saml2Binding<Saml2RedirectBinding>
     {

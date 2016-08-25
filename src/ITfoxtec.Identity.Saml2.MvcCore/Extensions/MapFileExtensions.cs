@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ITfoxtec.Identity.Saml2.MvcCore
+namespace ITfoxtec.Identity.Saml2.MvcCore.Extensions
 {
     public static class MapFileExtensions
     {

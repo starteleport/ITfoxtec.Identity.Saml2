@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Linq;
-using ITfoxtec.Identity.Saml2.Util;
-using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.Cryptography;
 using System.IdentityModel.Tokens;
+using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Schemas;
+using ITfoxtec.Identity.Saml2.Util;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Generic Saml2 Response.

@@ -1,7 +1,4 @@
-﻿using ITfoxtec.Identity.Saml2.Configuration;
-using ITfoxtec.Identity.Saml2.Cryptography;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -10,8 +7,12 @@ using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Cryptography;
+using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Schemas;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Generic Saml2 Request.

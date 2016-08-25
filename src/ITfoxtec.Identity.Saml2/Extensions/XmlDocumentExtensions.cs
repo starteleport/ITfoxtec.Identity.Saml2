@@ -1,11 +1,11 @@
-﻿using ITfoxtec.Identity.Saml2.Cryptography;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Cryptography;
+using ITfoxtec.Identity.Saml2.Schemas;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     /// <summary>
     /// Extension methods for XmlDocument

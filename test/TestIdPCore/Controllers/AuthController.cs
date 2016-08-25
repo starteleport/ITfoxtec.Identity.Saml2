@@ -10,6 +10,10 @@ using System.Security.Claims;
 using System.Linq;
 using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
+using ITfoxtec.Identity.Saml2.Bindings;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.MvcCore.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 using ITfoxtec.Identity.Saml2.Util;
 
 namespace TestIdPCore.Controllers

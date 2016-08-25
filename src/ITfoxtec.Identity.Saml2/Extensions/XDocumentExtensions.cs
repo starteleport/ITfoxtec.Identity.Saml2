@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using System.Xml.Linq;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     /// <summary>
     /// Extension methods for XDocument

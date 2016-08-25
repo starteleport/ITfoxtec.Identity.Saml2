@@ -1,13 +1,11 @@
-﻿using ITfoxtec.Identity.Saml2;
-using ITfoxtec.Identity.Saml2.Mvc;
+﻿using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Mvc.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 using ITfoxtec.Identity.Saml2.Schemas;
 using ITfoxtec.Identity.Saml2.Schemas.Metadata;
-using ITfoxtec.Identity.Saml2.Util;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using System.Web;
 using System.Web.Mvc;
 
 namespace TestWebApp.Controllers

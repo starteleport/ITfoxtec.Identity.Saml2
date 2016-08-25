@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Xml;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2.Tokens
 {
