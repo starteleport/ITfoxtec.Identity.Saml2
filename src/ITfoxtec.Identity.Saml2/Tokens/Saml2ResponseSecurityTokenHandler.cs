@@ -1,16 +1,13 @@
 ﻿using ITfoxtec.Identity.Saml2.Claims;
-using ITfoxtec.Identity.Saml2.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IdentityModel.Configuration;
-using System.IdentityModel.Services;
 using System.IdentityModel.Tokens;
-using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Xml;
+using ITfoxtec.Identity.Saml2.Request;
 
 namespace ITfoxtec.Identity.Saml2.Tokens
 {

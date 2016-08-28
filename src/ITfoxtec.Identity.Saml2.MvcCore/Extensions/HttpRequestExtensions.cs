@@ -1,11 +1,11 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
-using System;
 
-namespace ITfoxtec.Identity.Saml2.MvcCore
+namespace ITfoxtec.Identity.Saml2.MvcCore.Extensions
 {
     /// <summary>
     /// Extension methods for HttpRequest

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Bindings
 {
     [Serializable]
     public class InvalidSaml2BindingException : Exception

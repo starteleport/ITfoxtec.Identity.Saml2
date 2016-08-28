@@ -35,16 +35,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ITfoxtec.SAML2.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Security.Cryptography, Version=1.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Security.Cryptography.1.7.2\lib\net35\Security.Cryptography.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Services" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,11 +69,15 @@
     <Compile Include="Configuration\Saml2Configuration.cs" />
     <Compile Include="Configuration\Saml2ConfigurationException.cs" />
     <Compile Include="Configuration\Saml2IdentityConfiguration.cs" />
+    <Compile Include="Cryptography\CngRSAPKCS1SignatureFormatter.cs" />
+    <Compile Include="Cryptography\RSAPKCS1SHA1SignatureDescription.cs" />
+    <Compile Include="Cryptography\RSAPKCS1SHA256SignatureDescription.cs" />
     <Compile Include="Cryptography\Saml2EncryptedXml.cs" />
     <Compile Include="Cryptography\Saml2SignedText.cs" />
     <Compile Include="Cryptography\Saml2SignedXml.cs" />
     <Compile Include="Cryptography\Saml2Signer.cs" />
     <Compile Include="Cryptography\SignatureAlgorithm.cs" />
+    <Compile Include="Cryptography\X509CertificateExtensions.cs" />
     <Compile Include="Extensions\Saml2BindingExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\XDocumentExtensions.cs" />
@@ -117,9 +127,10 @@
     <Compile Include="Util\GenericTypeConverter.cs" />
     <Compile Include="Util\RawSaml2QueryString.cs" />
     <Compile Include="Util\Saml2StatusCodeUtil.cs" />
+    <Compile Include="Util\Saml2ToXElementExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ITfoxtec.SAML2.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

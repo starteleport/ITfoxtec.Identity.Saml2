@@ -1,11 +1,11 @@
-﻿using ITfoxtec.Identity.Saml2.Cryptography;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
+﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Cryptography;
+using ITfoxtec.Identity.Saml2.Schemas;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     /// <summary>
     /// Extension methods for XmlDocument
@@ -16,7 +16,7 @@ namespace ITfoxtec.Identity.Saml2
         /// Signs an XmlDocument with an xml signature using the signing certificate given as argument to the method.
         /// </summary>
         /// <param name="certificate">The certificate used to sign the document</param>
-        /// <param name="certificate">The Signature Algorithm used to sign the document</param>
+        /// <param name="signatureAlgorithm">The Signature Algorithm used to sign the document</param>
         /// <param name="includeOption">Certificate include option</param>
         /// <param name="id">The is of the topmost element in the xmldocument</param>
         internal static XmlDocument SignDocument(this XmlDocument xmlDocument, X509Certificate2 certificate, string signatureAlgorithm, X509IncludeOption includeOption, string id)
@@ -26,8 +26,8 @@ namespace ITfoxtec.Identity.Saml2
                 throw new ArgumentNullException(nameof(certificate));
             }
  
-            var signedXml = new Saml2SignedXml(xmlDocument.DocumentElement, certificate, signatureAlgorithm);
-            signedXml.ComputeSignature(includeOption, id);
+            var signedXml = new Saml2SignedXml(xmlDocument.DocumentElement);
+            signedXml.ComputeSignature(certificate, includeOption, id, signatureAlgorithm);
 
             var issuer = xmlDocument.DocumentElement[Saml2Constants.Message.Issuer, Saml2Constants.AssertionNamespace.OriginalString];
             xmlDocument.DocumentElement.InsertAfter(xmlDocument.ImportNode(signedXml.GetXml(), true), issuer);

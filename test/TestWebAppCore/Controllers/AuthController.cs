@@ -1,10 +1,13 @@
-﻿using ITfoxtec.Identity.Saml2;
-using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.MvcCore;
+﻿using ITfoxtec.Identity.Saml2.Schemas;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using ITfoxtec.Identity.Saml2.Bindings;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.MvcCore.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestWebAppCore.Identity;

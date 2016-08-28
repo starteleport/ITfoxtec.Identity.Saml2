@@ -1,15 +1,15 @@
-﻿using ITfoxtec.Identity.Saml2.Http;
-using ITfoxtec.Identity.Saml2.Schemas;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Xml;
+using ITfoxtec.Identity.Saml2.Cryptography;
+using ITfoxtec.Identity.Saml2.Http;
+using ITfoxtec.Identity.Saml2.Request;
+using ITfoxtec.Identity.Saml2.Schemas;
+using Security.Cryptography;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Bindings
 {
     public abstract class Saml2Binding<T>
     {
@@ -34,7 +34,7 @@ namespace ITfoxtec.Identity.Saml2
 
         public T Bind(Saml2Response saml2Response)
         {
-            return BindInternal(saml2Response as Saml2Request, Saml2Constants.Message.SamlResponse);
+            return BindInternal(saml2Response, Saml2Constants.Message.SamlResponse);
         }
 
         protected virtual Saml2Binding<T> BindInternal(Saml2Request saml2RequestResponse)
@@ -45,11 +45,29 @@ namespace ITfoxtec.Identity.Saml2
             if (saml2RequestResponse.Config == null)
                 throw new ArgumentNullException("saml2RequestResponse.Config");
 
-            if (saml2RequestResponse.Config.SigningCertificate != null)
+            var signingCertificate = saml2RequestResponse.Config.SigningCertificate;
+            if (signingCertificate != null)
             {
-                if (saml2RequestResponse.Config.SigningCertificate.PrivateKey == null)
+                var privateKey = signingCertificate.GetCertificatePrivateKey();
+                if (privateKey == null)
                 {
-                    throw new ArgumentException("No Private Key present in Signing Certificate or missing private key read credentials.");
+                    throw new ArgumentException(
+                        "No Private Key present in Signing Certificate or missing private key read credentials.");
+                }
+
+                if (privateKey is ICngAsymmetricAlgorithm)
+                {
+                    if (((ICngAsymmetricAlgorithm)privateKey).Key.Algorithm.Algorithm != "RSA")
+                    {
+                        throw new ArgumentException("The Private Key present in Signing Certificate must be RSA.");
+                    }
+                }
+                else
+                {
+                    if (!(privateKey is DSA || privateKey is RSACryptoServiceProvider))
+                    {
+                        throw new ArgumentException("The Private Key present in Signing Certificate must be either DSA or RSACryptoServiceProvider.");
+                    }
                 }
             }
 
@@ -65,12 +83,12 @@ namespace ITfoxtec.Identity.Saml2
 
         public Saml2Request Unbind(HttpRequest request, Saml2Request saml2Request)
         {
-            return UnbindInternal(request, saml2Request as Saml2Request, Saml2Constants.Message.SamlRequest);
+            return UnbindInternal(request, saml2Request, Saml2Constants.Message.SamlRequest);
         }
 
         public Saml2Response Unbind(HttpRequest request, Saml2Response saml2Response)
         {
-            return UnbindInternal(request, saml2Response as Saml2Request, Saml2Constants.Message.SamlResponse) as Saml2Response;
+            return UnbindInternal(request, saml2Response, Saml2Constants.Message.SamlResponse) as Saml2Response;
         }
 
         protected Saml2Request UnbindInternal(HttpRequest request, Saml2Request saml2RequestResponse)
@@ -84,12 +102,15 @@ namespace ITfoxtec.Identity.Saml2
             if (saml2RequestResponse.Config == null)
                 throw new ArgumentNullException("saml2RequestResponse.Config");
 
-            if(saml2RequestResponse.SignatureValidationCertificates == null || saml2RequestResponse.SignatureValidationCertificates.Count() < 1)
+            var certificates = saml2RequestResponse.SignatureValidationCertificates;
+
+            if (certificates == null || !certificates.Any())
                 saml2RequestResponse.SignatureValidationCertificates = saml2RequestResponse.Config.SignatureValidationCertificates;
+
             if (saml2RequestResponse.SignatureAlgorithm == null)
                 saml2RequestResponse.SignatureAlgorithm = saml2RequestResponse.Config.SignatureAlgorithm;
 
-            if (saml2RequestResponse.SignatureValidationCertificates != null && saml2RequestResponse.SignatureValidationCertificates.Count(c => c.PublicKey == null) > 0)
+            if (certificates != null && certificates.Count(c => c.PublicKey == null) > 0)
                 throw new ArgumentException("No Public Key present in at least Signature Validation Certificate.");
 
             return saml2RequestResponse;

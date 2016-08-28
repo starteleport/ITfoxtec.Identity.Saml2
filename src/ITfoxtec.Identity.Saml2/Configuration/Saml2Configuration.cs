@@ -4,7 +4,7 @@ using System.IdentityModel.Tokens;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Security;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Configuration
 {
     /// <summary>
     /// SAML2 component configuration

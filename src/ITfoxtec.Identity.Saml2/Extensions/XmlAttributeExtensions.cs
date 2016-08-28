@@ -1,7 +1,7 @@
-﻿using ITfoxtec.Identity.Saml2.Util;
-using System.Xml;
+﻿using System.Xml;
+using ITfoxtec.Identity.Saml2.Util;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     /// <summary>
     /// Extension methods for XmlAttribute

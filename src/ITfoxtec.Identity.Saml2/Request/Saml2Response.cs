@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Linq;
-using ITfoxtec.Identity.Saml2.Util;
-using ITfoxtec.Identity.Saml2.Schemas;
-using ITfoxtec.Identity.Saml2.Cryptography;
 using System.IdentityModel.Tokens;
+using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Schemas;
+using ITfoxtec.Identity.Saml2.Util;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Generic Saml2 Response.
@@ -54,9 +54,12 @@ namespace ITfoxtec.Identity.Saml2
 
             InResponseTo = XmlDocument.DocumentElement.Attributes[Saml2Constants.Message.InResponseTo].GetValueOrNull<Saml2Id>();
 
-            Status = Saml2StatusCodeUtil.ToEnum(XmlDocument.DocumentElement[Saml2Constants.Message.Status, Saml2Constants.ProtocolNamespace.OriginalString][Saml2Constants.Message.StatusCode, Saml2Constants.ProtocolNamespace.OriginalString].Attributes[Saml2Constants.Message.Value].GetValueOrNull<string>());
-
-
+            Status =
+                Saml2StatusCodeUtil.ToEnum(
+                    XmlDocument.DocumentElement[
+                        Saml2Constants.Message.Status, Saml2Constants.ProtocolNamespace.OriginalString][
+                            Saml2Constants.Message.StatusCode, Saml2Constants.ProtocolNamespace.OriginalString]
+                        .Attributes[Saml2Constants.Message.Value].GetValueOrNull<string>());
         }      
     }
 }

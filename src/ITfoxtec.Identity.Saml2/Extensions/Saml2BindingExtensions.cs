@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using ITfoxtec.Identity.Saml2.Bindings;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Extensions
 {
     public static class Saml2BindingExtensions
     {

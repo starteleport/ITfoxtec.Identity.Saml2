@@ -1,14 +1,15 @@
-﻿using ITfoxtec.Identity.Saml2;
-using ITfoxtec.Identity.Saml2.MvcCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.MvcCore.Extensions;
+using ITfoxtec.Identity.Saml2.Request;
 using ITfoxtec.Identity.Saml2.Schemas;
 using ITfoxtec.Identity.Saml2.Schemas.Metadata;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
-namespace TestWebApp.Controllers
+namespace TestWebAppCore.Controllers
 {
     [AllowAnonymous]
     [Route("Metadata")]

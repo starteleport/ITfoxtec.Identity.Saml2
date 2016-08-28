@@ -1,11 +1,12 @@
-﻿using ITfoxtec.Identity.Saml2.Schemas;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IdentityModel.Tokens;
 using System.Xml;
 using System.Xml.Linq;
+using ITfoxtec.Identity.Saml2.Configuration;
+using ITfoxtec.Identity.Saml2.Extensions;
+using ITfoxtec.Identity.Saml2.Schemas;
 
-namespace ITfoxtec.Identity.Saml2
+namespace ITfoxtec.Identity.Saml2.Request
 {
     /// <summary>
     /// Saml2 Logout Response.

@@ -1,7 +1,7 @@
-﻿using System.Web;
-using System;
+﻿using System;
+using System.Web;
 
-namespace ITfoxtec.Identity.Saml2.Mvc
+namespace ITfoxtec.Identity.Saml2.Mvc.Extensions
 {
     /// <summary>
     /// Extension methods for HttpRequest

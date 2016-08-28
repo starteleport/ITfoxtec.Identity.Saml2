@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ITfoxtec.Identity.Saml2.Configuration;
 
 namespace ITfoxtec.Identity.Saml2.MvcCore.Configuration
 {
