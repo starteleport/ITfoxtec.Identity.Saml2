@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.IdentityModel.Tokens;
-using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using ITfoxtec.Identity.Saml2.Cryptography;
 using ITfoxtec.Identity.Saml2.Extensions;
@@ -31,14 +30,12 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
         {
             const string xmlString = "<root id=\"a1\"><test></test></root>";
 
-            var certificate = CertificateUtil.Load(MapPath(certificatePath), "123");
+            var certificate = CertificateUtil.Load(TestFile.MapPath(certificatePath), "123");
             var xml = xmlString.ToXmlDocument().DocumentElement;
             var sut = new Saml2SignedXml(xml);
 
             Assert.DoesNotThrow(() => sut.ComputeSignature(certificate, X509IncludeOption.EndCertOnly, "a1", signatureAlgorithm));
             Assert.That(sut.CheckSignature(), Is.True);
         }
-
-        private string MapPath(string relativePath) => Path.Combine(TestContext.CurrentContext.TestDirectory, relativePath);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
@@ -116,7 +117,7 @@ namespace ITfoxtec.Identity.Saml2.Schemas.Metadata
         {
             foreach (XmlElement keyDescriptorElement in keyDescriptorElements)
             {
-                var keyInfoElement = keyDescriptorElement.FirstChild as XmlElement;
+                var keyInfoElement = keyDescriptorElement.ChildNodes.OfType<XmlElement>().FirstOrDefault();
                 if (keyInfoElement != null)
                 {
                     var keyInfo = new KeyInfo();
@@ -126,15 +127,8 @@ namespace ITfoxtec.Identity.Saml2.Schemas.Metadata
                     {
                         var keyInfoX509Data = keyInfoEnumerator.Current as KeyInfoX509Data;
                         if (keyInfoX509Data != null)
-                        {
-                            foreach (var certificate in keyInfoX509Data.Certificates)
-                            {
-                                if (certificate is X509Certificate2)
-                                {
-                                    yield return certificate as X509Certificate2;
-                                }
-                            }
-                        }
+                            foreach (var certificate in keyInfoX509Data.Certificates.OfType<X509Certificate2>())
+                                yield return certificate;
                     }
                 }
             }

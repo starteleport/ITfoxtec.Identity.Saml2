@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Xml;
 using System.Xml.Linq;
 
 namespace ITfoxtec.Identity.Saml2.Schemas.Metadata

@@ -13,8 +13,8 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
         [Test]
         public void CheckSignature_ForSignedResponseWithSignedAssertion_ShouldWork()
         {
-            var signedXml = File.ReadAllText(MapPath(@"TestFiles\saml2Response.xml"));
-            var certificate = CertificateUtil.Load(MapPath(@"TestFiles\okta.cert"));
+            var signedXml = File.ReadAllText(TestFile.MapPath(@"TestFiles\saml2Response.xml"));
+            var certificate = CertificateUtil.Load(TestFile.MapPath(@"TestFiles\okta.cert"));
             var sut = new Saml2ResponseTester(new Saml2Configuration())
             {
                 SignatureValidationCertificates = new[] {certificate}
@@ -23,7 +23,5 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
             var ex = Assert.Throws<Saml2RequestException>(() => sut.ReadPublicly(signedXml, true));
             Assert.That(ex.Message, Does.Contain("Assertion has expired"));
         }
-
-        private string MapPath(string relativePath) => Path.Combine(TestContext.CurrentContext.TestDirectory, relativePath);
     }
 }

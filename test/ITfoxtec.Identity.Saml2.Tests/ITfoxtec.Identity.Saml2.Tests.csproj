@@ -53,6 +53,8 @@
     <Compile Include="Cryptography\Saml2SignedXmlTests.cs" />
     <Compile Include="Cryptography\Saml2EncryptedXmlTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schemas\Metadata\IdPSsoDescriptorTests.cs" />
+    <Compile Include="TestFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,6 +78,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestFiles\Metadata.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestFiles\saml2Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

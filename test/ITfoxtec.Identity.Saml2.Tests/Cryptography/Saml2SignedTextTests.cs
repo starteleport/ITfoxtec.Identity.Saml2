@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.IdentityModel.Tokens;
-using System.IO;
 using System.Text;
 using ITfoxtec.Identity.Saml2.Cryptography;
 using ITfoxtec.Identity.Saml2.Util;
@@ -29,7 +28,7 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
         [TestCaseSource(nameof(TestCases))]
         public void SignData_ForDifferentCertificatesAndSignatures_ShouldWork(string certificatePath, string signatureAlgorithm)
         {
-            var certificate = CertificateUtil.Load(MapPath(LegacyCertificate), "123");
+            var certificate = CertificateUtil.Load(TestFile.MapPath(LegacyCertificate), "123");
             var sut = new Saml2SignedText(certificate, signatureAlgorithm);
             var signingText = Guid.NewGuid().ToString();
             var bytesToSign = Encoding.UTF8.GetBytes(signingText);
@@ -38,7 +37,5 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
             var signature = sut.SignData(bytesToSign);
             Assert.That(sut.CheckSignature(signingText, signature), Is.True);
         }
-
-        private string MapPath(string relativePath) => Path.Combine(TestContext.CurrentContext.TestDirectory, relativePath);
     }
 }

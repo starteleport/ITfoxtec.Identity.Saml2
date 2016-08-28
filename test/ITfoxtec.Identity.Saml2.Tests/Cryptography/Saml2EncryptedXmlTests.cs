@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using ITfoxtec.Identity.Saml2.Cryptography;
 using ITfoxtec.Identity.Saml2.Extensions;
 using ITfoxtec.Identity.Saml2.Util;
@@ -19,7 +18,7 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
         {
             const string xmlString = "<root id=\"a1\"><test /></root>";
 
-            var certificate = CertificateUtil.Load(MapPath(certificatePath), "123");
+            var certificate = CertificateUtil.Load(TestFile.MapPath(certificatePath), "123");
             var xml = xmlString.ToXmlDocument();
             var sut = new Saml2EncryptedXml(xml, (RSA)certificate.GetCertificatePrivateKey());
 
@@ -32,7 +31,5 @@ namespace ITfoxtec.Identity.Saml2.Tests.Cryptography
             
             Assert.That(encrypted.OuterXml, Is.EqualTo(xml.OuterXml));
         }
-
-        private string MapPath(string relativePath) => Path.Combine(TestContext.CurrentContext.TestDirectory, relativePath);
     }
 }
